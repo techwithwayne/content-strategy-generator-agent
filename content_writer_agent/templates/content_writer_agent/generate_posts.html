@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Content Writer Agent - Generate Posts</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+        .post { border: 1px solid #ddd; padding: 10px; margin: 10px 0; background: #fafafa; }
+        .post h2 { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <h1>Content Writer Agent - Generate Posts</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Generate Posts</button>
+    </form>
+
+    {% if posts %}
+        <h2>Generated Posts:</h2>
+        {% for post in posts %}
+            <div class="post">
+                {% if post.title %}
+                    <h2>{{ post.title }}</h2>
+                    <div>{{ post.content|safe }}</div>
+                {% else %}
+                    <p>{{ post }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
