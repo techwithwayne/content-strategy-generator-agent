@@ -1,33 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Content Writer Agent - Generate Posts</title>
+    <title>Download Your Generated Blog Posts</title>
     <style>
-        body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-        .post { border: 1px solid #ddd; padding: 10px; margin: 10px 0; background: #fafafa; }
-        .post h2 { margin-top: 0; }
+        body { font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        input, button { width: 100%; padding: 10px; margin: 5px 0; }
+        h1 { text-align: center; }
     </style>
 </head>
 <body>
-    <h1>Content Writer Agent - Generate Posts</h1>
+    <h1>Download Your Generated Blog Posts</h1>
+    <p>Enter your name, email, and Strategy Request ID below. Your posts will automatically download after generation.</p>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Generate Posts</button>
+        <button type="submit">Generate and Download Posts</button>
     </form>
-
-    {% if posts %}
-        <h2>Generated Posts:</h2>
-        {% for post in posts %}
-            <div class="post">
-                {% if post.title %}
-                    <h2>{{ post.title }}</h2>
-                    <div>{{ post.content|safe }}</div>
-                {% else %}
-                    <p>{{ post }}</p>
-                {% endif %}
-            </div>
-        {% endfor %}
-    {% endif %}
 </body>
 </html>
